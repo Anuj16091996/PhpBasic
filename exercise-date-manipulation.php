@@ -6,7 +6,7 @@ function showTitle($title)
 
     if ($title=='Exercise 1'){
         echo '<hr/>';
-        $today = date("D j M Y G:i:s +v");
+        $today = date("D j M Y G:i:s");
         echo "$today";
         echo '<hr/>';
     }elseif ($title=='Exercise 2 - Show Day'){
