@@ -10,10 +10,13 @@ if (isset($_FILES['fileToUpload']))
         $error = !in_array($detectedType, $allowedTypes);
         if (!$error) {
             //Normally: Rename file to something that will not conflict.
-            $today = date("D j M Y G:i:s");
-            $imageFile["name"]=$today;
-            move_uploaded_file($imageFile['tmp_name'], "image/$imageFile[name]");
 
+            $filename = uniqid() . "-" . time();
+
+            $extension  = pathinfo( $_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION );
+
+            $basename   = $filename . "." . $extension;
+            move_uploaded_file($_FILES['fileToUpload']['tmp_name'], "image/{$basename}" );
         }
         else {
             echo "Invalid file type: please upload PNG, JPEG, GIF <br />";
@@ -22,6 +25,23 @@ if (isset($_FILES['fileToUpload']))
         echo "FILE SIZE TOO BIG: Max size of 300kb";
     }
 }
+
+$dirname = "image/";
+$files  = glob($dirname."*.*");
+for ($i=0; $i<count($files); $i++)
+{
+$image = $files[$i];
+$supported_file = array(
+    'jpg',
+    'png'
+);
+}
+$ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+if (in_array($ext, $supported_file)) {
+    echo '<img src="'.$image .'" alt="Random image" />'."<br /><br />";
+
+}
+
 ?>
 
 
