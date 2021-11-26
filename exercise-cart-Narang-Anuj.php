@@ -1,8 +1,20 @@
+<?php
+
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
 
 <body>
-<table class="table table-striped">
+<div class="w3-container">
+<table class="w3-table-all">
     <thead>
     <tr>
         <th scope="col">Add to cart</th>
@@ -14,93 +26,95 @@
     <tbody>
     <tr>
         <?php
-        if(!isset($_COOKIE['apple'])) {
+        if(!isset($_SESSION['apple'])) {
             $apple = 0;
-            setcookie("apple", $apple, strtotime( '+30 days' ));
+            $_SESSION["apple"]=$apple;
         }
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=plus_Apple'>+1 Apple</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "plus_Apple"){
-            $apple = ++$_COOKIE['apple'];
-            setcookie("apple", $apple, strtotime( '+30 days' ));
+            $apple = ++$_SESSION["apple"];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=minus_Apple'>-1 Apple</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "minus_Apple"){
-            $apple = --$_COOKIE['apple'];
-            setcookie("apple", $apple, strtotime( '+30 days' ));
+            $apple = --$_SESSION["apple"];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=remove_Apple'>remove all</a</td>";
         if(isset($_GET['page']) && $_GET['page'] == "remove_Apple"){
-            $apple = 0;
-            setcookie("apple", $apple , strtotime( '+30 days' ));
+            $_SESSION["apple"]=0;
+
         }
 
-        if (isset($_COOKIE['apple'])){
+        if (isset($_SESSION['apple'])){
             echo "<td>";
-            echo $_COOKIE['apple'];
+            echo ($_SESSION['apple']);
             echo "</td>";
         }
         ?>
     </tr>
     <tr>
         <?php
-        if(!isset($_COOKIE['pear'])) {
+        if(!isset($_SESSION['pear'])) {
             $pear = 0;
-            setcookie("pear", $pear, strtotime( '+30 days' ));
+            $_SESSION["pear"]=$pear;
         }
+
+
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=plus_Pear'>+1 pear</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "plus_Pear"){
-            $pear = ++$_COOKIE['pear'];
-            setcookie("pear", $pear, strtotime( '+30 days' ));
+            $pear = ++$_SESSION["pear"];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=minus_Pear'>-1 pear</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "minus_Pear"){
-            $apple = --$_COOKIE['pear'];
-            setcookie("pear", $apple, strtotime( '+30 days' ));
+            $apple = --$_SESSION["pear"];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=remove_Pear'>remove all</a</td>";
         if(isset($_GET['page']) && $_GET['page'] == "remove_Pear"){
-            $pear = 0;
-            setcookie("pear", $pear , strtotime( '+30 days' ));
+            $_SESSION["pear"] = 0;
+  ;
         }
 
-        if (isset($_COOKIE['pear'])){
+        if (isset($_SESSION["pear"])){
             echo "<td>";
-            echo $_COOKIE['pear'];
+            echo $_SESSION["pear"];
             echo "</td>";
         }
         ?>
     </tr>
     <tr>
         <?php
-        if(!isset($_COOKIE['banana'])) {
+        if(!isset($_SESSION['banana'])) {
             $banana = 0;
-            setcookie("banana", $banana, strtotime( '+30 days' ));
+            $_SESSION['banana']=$banana;
+
         }
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=plus_Banana'>+1 banana</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "plus_Banana"){
-            $banana = ++$_COOKIE['banana'];
-            setcookie("banana", $banana, strtotime( '+30 days' ));
+            $banana = ++ $_SESSION['banana'];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=minus_Banana'>-1 banana</a></td>";
         if(isset($_GET['page']) && $_GET['page'] == "minus_Banana"){
-            $banana = --$_COOKIE['banana'];
-            setcookie("banana", $banana,strtotime( '+30 days' ));
+            $banana = -- $_SESSION['banana'];
+
         }
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=remove_All'>remove all</a</td>";
         if(isset($_GET['page']) && $_GET['page'] == "remove_All"){
-            $banana = 0;
-            setcookie("banana", $banana , strtotime( '+30 days' ));
+            $_SESSION['banana']=0;
         }
 
-        if (isset($_COOKIE['banana'])){
+        if (isset( $_SESSION['banana'])){
             echo "<td>";
-            echo $_COOKIE['banana'];
+            echo  $_SESSION['banana'];
             echo "</td>";
         }
         ?>
@@ -110,21 +124,15 @@
 
         echo "<td><a href='exercise-cart-Narang-Anuj.php?page=ClearAll'>Clear The Basket</a</td>";
         if(isset($_GET['page']) && $_GET['page'] == "ClearAll"){
-            $banana = 0;
-            setcookie("banana", $banana , strtotime( '+30 days' ));
-
-            $banana = 0;
-            setcookie("banana", $banana , strtotime( '+30 days' ));
-
-            $pear = 0;
-            setcookie("pear", $pear , strtotime( '+30 days' ));
-
-            $apple = 0;
-            setcookie("apple", $apple , strtotime( '+30 days' ));
+         $_SESSION['banana']=0;
+         $_SESSION['pear']=0;
+          $_SESSION["apple"]=0;
         }
      ?>
     </tr>
     </tbody>
 </table>
+
+</div>
 </body>
 </html>

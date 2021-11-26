@@ -26,30 +26,40 @@ if (isset($_FILES['fileToUpload']))
     }
 }
 
-$dirname = "image/";
-$files  = glob($dirname."*.*");
-for ($i=0; $i<count($files); $i++)
-{
-$image = $files[$i];
-$supported_file = array(
-    'jpg',
-    'png'
-);
-}
-$ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
-if (in_array($ext, $supported_file)) {
-    echo '<img src="'.$image .'" alt="Random image" />'."<br /><br />";
 
-}
 
 ?>
 
 
 <form action="<?php $_SERVER['PHP_SELF']?>" method="post" enctype="multipart/form-data">
     Select image to upload:
-    <input type="file" name="fileToUpload" id="fileID">
+    <input type="file" name="fileToUpload" id="fileID"><br>
     <input type="submit" value="Upload Image" name="submit">
 </form>
+
+
+<?php
+$dirname = "image/";
+$files  = glob($dirname."*.*");
+for ($i=0; $i<count($files); $i++)
+{
+    $image = $files[$i];
+    $supported_file = array(
+        'jpg',
+        'png'
+    );
+    $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+    if(!$ext==""){
+        if (in_array($ext, $supported_file)) {
+            echo '<img src="'.$image .'" alt="Random image" />'."<br /><br />";
+        }
+    }
+
+}
+
+
+
+?>
 
 </body>
 </html>

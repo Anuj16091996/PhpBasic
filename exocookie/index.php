@@ -22,17 +22,19 @@ $products = require('data.php');
     <!--            </div>-->
     <!--        </div>-->
     <div class="w3-row-padding w3-margin-top">
-        <?php  foreach ($products as $key => $value)
-        { ?>
-            <div class="w3-third">
-                <div class="w3-card">
-                    <a href="display.php?id=<?php echo$value["id"]?>"><img src="images/<?php echo $value["urlImg"]?> " style="width: 100%;" ></a>
-                    <div class="w3-container">
-                        <?php  echo '<p>' . $value["title"] . '</p>'; ?>
+        <?php foreach ($products as $product) { ?>
+            <div class="w3-col s6 m6 l3">
+                <div class="w3-card-4 w3-margin">
+                    <a href="display.php?id=<?=$product["id"]?>">
+                        <img src="images/<?=$product["urlImg"]?>" style="width: 100%;"
+                             alt="<?=$product["title"]?>">
+                    </a>
+                    <div class="w3-container w3-center">
+                        <p><?=$product["description"]?></p>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php }?>
     </div>
     <hr/>
 
