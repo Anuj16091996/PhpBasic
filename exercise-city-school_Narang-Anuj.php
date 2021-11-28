@@ -18,6 +18,8 @@ $userSelection="";
 if (isset($_POST['form_submit'])){
     $userSelection =($_POST["select"]);
 }
+$t=array(array('a','b','c'),array('d','e','f'));
+echo $t[1][1];
 
 ?>
 
